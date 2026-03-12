@@ -72,7 +72,7 @@ export const PageRoute = () => {
     setContactModal(true);
     
     analytics.trackContactFormOpen(source);
-  };
+  }; 
 
   return (
     <>
@@ -81,14 +81,14 @@ export const PageRoute = () => {
           sitevisitmodal={sitevisitmodal}
           setSiteVisitModal={setSiteVisitModal}
         />
-      )} */}
-      {contactmodal && (
-        <ContactForm
+      )} */} 
+      {contactmodal && ( 
+        <ContactForm 
           contactmodal={contactmodal}
           setContactModal={setContactModal}
           setSiteVisitModal={setSiteVisitModal}
           leadSource={leadSource}
-        />
+        /> 
       )}
 
       <Navbar
@@ -97,7 +97,7 @@ export const PageRoute = () => {
         openContactModal={openContactModal}
       />
 
-      <WhatsApp />
+      <WhatsApp /> 
       <Routes>
         <Route
           path="/"

@@ -1,4 +1,4 @@
-import ReactGA from "react-ga4";
+import ReactGA from "react-ga4"; 
 
 /**
  * Helper to get UTM parameters from the current URL

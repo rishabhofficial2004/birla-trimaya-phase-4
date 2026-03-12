@@ -15,7 +15,7 @@ if (trackingId) {
     gtagOptions: {
       send_page_view: false
     }
-  });
+  }); 
 }
 
 import { BrowserRouter } from "react-router-dom";
