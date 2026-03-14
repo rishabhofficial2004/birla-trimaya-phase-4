@@ -71,7 +71,7 @@ export const PageRoute = () => {
     setLeadSource({ source, propertyType });
     setContactModal(true);
     
-    analytics.trackContactFormOpen(source);
+    analytics.trackContactForm(source, "opening");
   }; 
 
   return (
