@@ -29,12 +29,16 @@ export const analytics = {
       form_name: "contact_form",
       project_name: "Birla-Trimaya-Phase-4",
       lead_source: source,
-      utm_source: tracking.utm_source,
-      utm_medium: tracking.utm_medium,
-      utm_campaign: tracking.utm_campaign,
-      utm_term: tracking.utm_term,
-      utm_content: tracking.utm_content,
-      gclid: tracking.gclid,
+      utm_source: tracking.utm_source || "",
+      utm_medium: tracking.utm_medium || "",
+      utm_campaign: tracking.utm_campaign || "",
+      utm_term: tracking.utm_term || "",
+      utm_content: tracking.utm_content || "",
+      gclid: tracking.gclid || "",
+      // Also include standard GA4 campaign parameters for better attribution
+      campaign_source: tracking.utm_source || "",
+      campaign_medium: tracking.utm_medium || "",
+      campaign_name: tracking.utm_campaign || "",
     });
   }
 };

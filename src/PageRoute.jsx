@@ -17,6 +17,7 @@ import { Gallery } from "./sections/Gallery";
 import ContactForm from "./components/contact/ContactForm";
 import { useLeadTracking } from "./hooks/useLeadTracking";
 import { analytics } from "./analytics";
+import { persistTrackingParams } from "./utils/tracking";
 
 const RevealOnScroll = ({ children }) => {
   const ref = useRef(null);
@@ -58,8 +59,9 @@ export const PageRoute = () => {
   const [leadSource, setLeadSource] = useState(null);
   const location = useLocation();
   
-  // Track pageview on every location change
+  // Track pageview and persist UTMs on every location change
   useEffect(() => {
+    persistTrackingParams();
     ReactGA.send({
       hitType: "pageview",
       page: location.pathname + location.search,

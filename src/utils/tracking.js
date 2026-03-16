@@ -43,14 +43,18 @@ export const persistTrackingParams = () => {
   }
 
   // Set global GA4 parameters so every event includes them
-  if (merged.utm_source) {
+  // We check if we have ANY tracking params, not just utm_source
+  const hasTracking = Object.values(merged).some(val => val !== "");
+  
+  if (hasTracking) {
     ReactGA.set({
-      utm_source: merged.utm_source,
-      utm_medium: merged.utm_medium,
-      utm_campaign: merged.utm_campaign,
-      utm_term: merged.utm_term,
-      utm_content: merged.utm_content,
-      gclid: merged.gclid,
+      utm_source: merged.utm_source || "",
+      ut_source: merged.utm_source || "", // Specifically requested by user
+      utm_medium: merged.utm_medium || "",
+      utm_campaign: merged.utm_campaign || "",
+      utm_term: merged.utm_term || "",
+      utm_content: merged.utm_content || "",
+      gclid: merged.gclid || "",
     });
   }
 };
