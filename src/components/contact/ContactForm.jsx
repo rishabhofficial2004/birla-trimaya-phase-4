@@ -7,6 +7,7 @@ import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { isValidPhoneNumber } from "libphonenumber-js";
 import { useLeadTracking, LEAD_SOURCES } from "../../hooks/useLeadTracking";
+import { getPersistedParams } from "../../utils/tracking";
 
 // 🔥 GTM DATA LAYER EVENT
 
@@ -36,20 +37,8 @@ const ContactForm = ({ contactmodal, setContactModal, leadSource }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // ✅ UTM extraction
-  const getUTMParams = () => {
-    if (typeof window === "undefined") return {};
-    const params = new URLSearchParams(window.location.search);
-    return {
-      utmSource: params.get("utmSource") || "",
-      utmMedium: params.get("utmMedium") || "",
-      utmCampaign: params.get("utmCampaign") || "",
-      utmKeyword: params.get("utmKeyword") || "",
-    };
-  };
-
   useEffect(() => {
-    setUtmParams(getUTMParams());
+    setUtmParams(getPersistedParams());
   }, []);
 
   const validateForm = () => {
@@ -94,10 +83,12 @@ const ContactForm = ({ contactmodal, setContactModal, leadSource }) => {
       projectName: "Birla Trimaya Phase 4",
       currentAgent: "Unknown",
       utmDetails: {
-        source: utmParams.utmSource || null,
-        medium: utmParams.utmMedium || null,
-        campaign: utmParams.utmCampaign || null,
-        keyword: utmParams.utmKeyword || null,
+        source: utmParams.utm_source || null,
+        medium: utmParams.utm_medium || null,
+        campaign: utmParams.utm_campaign || null,
+        term: utmParams.utm_term || null,
+        content: utmParams.utm_content || null,
+        gclid: utmParams.gclid || null,
       },
     };
 

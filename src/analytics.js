@@ -1,17 +1,11 @@
 import ReactGA from "react-ga4";
+import { getPersistedParams } from "./utils/tracking";
 
 /**
- * Helper to get UTM and Ads parameters from the current URL
+ * Helper to get UTM and Ads parameters from the current session or URL
  */
 const getTrackingParams = () => {
-  if (typeof window === "undefined") return {};
-  const params = new URLSearchParams(window.location.search);
-  return {
-    utm_source: params.get("utmSource") || params.get("utm_source") || "",
-    utm_medium: params.get("utmMedium") || params.get("utm_medium") || "",
-    utm_campaign: params.get("utmCampaign") || params.get("utm_campaign") || "",
-    gclid: params.get("gclid") || "", // Google Click ID for Ads attribution
-  };
+  return getPersistedParams();
 };
 
 export const analytics = {
@@ -38,6 +32,8 @@ export const analytics = {
       utm_source: tracking.utm_source,
       utm_medium: tracking.utm_medium,
       utm_campaign: tracking.utm_campaign,
+      utm_term: tracking.utm_term,
+      utm_content: tracking.utm_content,
       gclid: tracking.gclid,
     });
   }
