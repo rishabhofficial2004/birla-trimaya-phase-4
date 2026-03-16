@@ -23,7 +23,7 @@ export const analytics = {
     const tracking = getTrackingParams();
 
     const normalizedEventType =
-      eventType === "submission" ? "submission" : "opening"; 
+      eventType === "submission" ? "submission" : "opening";  
 
     const eventName =
       normalizedEventType === "opening"
